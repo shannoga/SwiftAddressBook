@@ -624,7 +624,8 @@ class SwiftAddressBookPerson : SwiftAddressBookRecord {
     //MARK: generic methods to set and get person properties
     
     private func extractProperty<T>(propertyName : ABPropertyID) -> T? {
-        return ABRecordCopyValue(self.internalRecord, propertyName).takeRetainedValue() as? T
+        let value: AnyObject? =  ABRecordCopyValue(self.internalRecord, propertyName).takeRetainedValue()
+        return value as? T
     }
     
     private func setSingleValueProperty<T : AnyObject>(key : ABPropertyID,_ value : T?) {
